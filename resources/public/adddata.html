@@ -4,25 +4,25 @@
 		<input required="" type="text" name="nama" id="nama" placeholder="Nama Sekolah">
 		<br>
 		<label for="alamat">Alamat</label>
-		<input required="" type="text" name="alamat" id="alamat" placeholder="Alamat Sekolah">
+		<input  type="text" name="alamat" id="alamat" placeholder="Alamat Sekolah">
 		<br>
 		<label for="kota">Kota</label>
-		<input required="" type="text" name="kota" id="kota" placeholder="Kota">
+		<input  type="text" name="kota" id="kota" placeholder="Kota">
 		<br>
 		<label for="telp">Telp</label>
-		<input required="" type="text" name="telp" id="telp" placeholder="Hand Phone">
+		<input  type="text" name="telp" id="telp" placeholder="Hand Phone">
 		<br>
 		<label for="kepalasekolah">Kepala Sekolah</label>
-		<input required="" type="text" name="kepalasekolah" id="kepalasekolah" placeholder="Kepala Sekolah">
+		<input  type="text" name="kepalasekolah" id="kepalasekolah" placeholder="Kepala Sekolah">
 		<br>
 		<label for="humas">Humas</label>
-		<input required="" type="text" name="humas" id="humas" placeholder="Humas">
+		<input  type="text" name="humas" id="humas" placeholder="Humas">
 		<br>
 		<label for="kodepos">Kode pos</label>
-		<input required="" type="text" name="kodepos" id="kodepos" placeholder="Kode Pos">
+		<input  type="text" name="kodepos" id="kodepos" placeholder="Kode Pos">
 		<br>
 		<label for="website">Website Sekolah</label>
-		<input required="" type="text" name="website" id="website" placeholder="Website Sekolah">
+		<input  type="text" name="website" id="website" placeholder="Website Sekolah">
 		<br>
 		<label for="sabtungajar">Kegiatan belajar mengajar di hari sabtu?</label>
 		<select name="sabtungajar">
@@ -31,32 +31,62 @@
 		</select>
 		<br>
 		<label for="waktupresentasi">Waktu Presentasi</label>
-		<input required="" type="text" name="waktupresentasi" id="waktupresentasi" placeholder="Waktu Presentasi">
+		<input  type="text" name="waktupresentasi" id="waktupresentasi" placeholder="Waktu Presentasi">
 		<br>
 		<label for="lineid">Line ID</label>
-		<input required="" type="text" name="lineid" id="lineid" placeholder="Line ID">
+		<input  type="text" name="lineid" id="lineid" placeholder="Line ID">
 		<br>
 		<label for="twittersekolah">ID Twitter Sekolah</label>
-		<input required="" type="text" name="twittersekolah" id="twittersekolah" placeholder="ID Twitter Sekolah">
+		<input  type="text" name="twittersekolah" id="twittersekolah" placeholder="ID Twitter Sekolah">
 		<br>
 		<label for="twitterosis">ID Twitter OSIS</label>
-		<input required="" type="text" name="twitterosis" id="twitterosis" placeholder="ID Twitter Osis">
+		<input  type="text" name="twitterosis" id="twitterosis" placeholder="ID Twitter Osis">
 		<br>
 		<label for="twitterevent">ID Twitter Event</label>
-		<input required="" type="text" name="twitterevent" id="twitterevent" placeholder="ID Twitter Event">
+		<input  type="text" name="twitterevent" id="twitterevent" placeholder="ID Twitter Event">
 		<br>
 		<label for="koransekolah">Koran Sekolah</label>
-		<input required="" type="text" name="koransekolah" id="koransekolah" placeholder="Koran Sekolah">
+		<input  type="text" name="koransekolah" id="koransekolah" placeholder="Koran Sekolah">
 		<br>
 		<label for="jumlahguru">Jumlah Guru</label>
-		<input required="" type="text" name="jumlahguru" id="jumlahguru" placeholder="Jumlah Guru">
+		<input  type="text" name="jumlahguru" id="jumlahguru" placeholder="Jumlah Guru">
 		<br>
 		<label for="jumlahsiswa">Jumlah Siswa</label>
-		<input required="" type="text" name="jumlahsiswa" id="jumlahsiswa" placeholder="Jumlah Siswa">
+		<input  type="text" name="jumlahsiswa" id="jumlahsiswa" placeholder="Jumlah Siswa">
 		<br>
 		<label for="notes">Notes</label>
-		<input required="" type="text" name="notes" id="notes" placeholder="Notes">
+		<input  type="text" name="notes" id="notes" placeholder="Notes">
 		<br>
+		<div id="pic">
+			<label for="pic">Person In Charge</label>
+			<input  type="text" name="pic1" id="pic" placeholder="Person In Charge">
+			<input  type="text" name="jabatanpic1" placeholder="Jabatan">
+			<input  type="text" name="telppic1" placeholder="Telp">
+			<br>
+			<div id="picadd"></div>
+			<button type="button" onclick="addpic();">+</button>
+		</div>
+		<div id="cp">
+			<label for="cp">Contact Person</label>
+			<input  type="text" name="cp1" id="cp" placeholder="Contact Person">
+			<input  type="text" name="jabatancp1" placeholder="Jabatan">
+			<input  type="text" name="telpcp1" placeholder="Telp">
+			<br>
+			<div id="cpadd"></div>
+			<button type="button" onclick="addcp();">+</button>
+		</div>
+		<label for="kosis"> Ketua Osis</label>
+		<input  type="text" name="kosis" id="kosis" placeholder="Ketua Osis">
+		<br>
+		<div id="mkosis">
+			<label for="mkosis">Mantan Ketua Osis</label>
+			<input  type="text" name="mkosis1" id="mkosis" placeholder="Mantan Ketua Osis">
+			<input  type="text" name="jabatanmk1" placeholder="Jabatan">
+			<input  type="text" name="telpmk1" placeholder="Telp">
+			<br>
+			<div id="mkadd"></div>
+			<button type="button" onclick="addmk();">+</button>
+		</div>
 		<label for="ttpic">Tanda Tangan PIC</label>
 		<input type="file" name="ttpic">
 		<br>
@@ -81,7 +111,6 @@
 			<option value="no">Tidak</option>
 		</select>
 		<br>
-
-		<input required="" type="submit" value="Submit">
+		<input  type="submit" value="Submit">
 	</form>
 </div>

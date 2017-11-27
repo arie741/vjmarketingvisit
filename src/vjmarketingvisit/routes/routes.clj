@@ -4,6 +4,8 @@
             [net.cgrand.enlive-html :refer [deftemplate defsnippet] :as html]
             [ring.util.anti-forgery :refer [anti-forgery-field]]
             [vjmarketingvisit.db :as db]
+            [noir.io :as io]
+            [clojure.java.io :as cio]
             [clojure.java.jdbc :as jdbc]))
 
 ;snippet
@@ -20,32 +22,47 @@
 (defroutes app-routes
   (GET "/" [] 
   	(indexpage (adddata)))
-  (GET "/send-action" {params :params}
-  	(jdbc/insert! db/dbase :sekolah 
-    	{:uuid (str (db/squuid))
-   	 	 :nama (:nama params)
-	   	 :alamat (:alamat params)
-	   	 :kota (:kota params)
-	   	 :telp (:telp params)
-	   	 :kepalasekolah (:kepalasekolah params)
-	   	 :humas (:humas params)
-	   	 :kodepos (:kodepos params)
-	   	 :website (:website params)
-	   	 :sabtungajar (:sabtungajar params)
-	   	 :waktupresentasi (:waktupresentasi params)
-	   	 :lineid (:lineid params)
-	   	 :twittersekolah (:twittersekolah params)
-	   	 :twitterosis (:twitterosis params)
-	   	 :twitterevent (:twitterevent params)
-	   	 :koransekolah (:koransekolah params)
-	   	 :jmlhguru (:jumlahguru params)
-	   	 :jmlhsiswa (:jumlahsiswa params)
-	   	 :notes (:notes params)
-	   	 :tandatangan (:ttpic params)
-	   	 :capsekolah (:capsekolah params)
-	   	 :expensereport (:expensereport params)
-	   	 :controllabletime (:ctworksheet params)
-	   	 :dailyactivity (:dailyactivity params)
-	   	 :dataflyer (:dataflyering params)
-	   	 :isvisited (:isvisited params)}))
+  (POST "/send-action" {params :params}
+  	(let [uuid (str (db/squuid))]
+  		(do
+  	  		(jdbc/insert! db/dbase :sekolah 
+  	  	    	{:uuid uuid
+  	  	   	 	 :nama (:nama params)
+  	  		   	 :alamat (:alamat params)
+  	  		   	 :kota (:kota params)
+  	  		   	 :telp (:telp params)
+  	  		   	 :kepalasekolah (:kepalasekolah params)
+  	  		   	 :humas (:humas params)
+  	  		   	 :kodepos (:kodepos params)
+  	  		   	 :website (:website params)
+  	  		   	 :sabtungajar (:sabtungajar params)
+  	  		   	 :waktupresentasi (:waktupresentasi params)
+  	  		   	 :lineid (:lineid params)
+  	  		   	 :twittersekolah (:twittersekolah params)
+  	  		   	 :twitterosis (:twitterosis params)
+  	  		   	 :twitterevent (:twitterevent params)
+  	  		   	 :koransekolah (:koransekolah params)
+  	  		   	 :jmlhguru (:jumlahguru params)
+  	  		   	 :jmlhsiswa (:jumlahsiswa params)
+  	  		   	 :notes (:notes params)
+  	  		   	 :tandatangan (:filename (:ttpic params))
+  	  		   	 :capsekolah (:filename (:capsekolah params))
+  	  		   	 :expensereport (:filename (:expensereport params))
+  	  		   	 :controllabletime (:filename (:ctworksheet params))
+  	  		   	 :dailyactivity (:filename (:dailyactivity params))
+  	  		   	 :dataflyer (:filename (:dataflyering params))
+  	  		   	 :isvisited (:filename (:isvisited params))})
+          (jdbc/insert! db/dbase :person 
+              {:nama (:pic1 params)
+               :jabatan (:jabatanpic1 params)
+               :telp (:telppic1 params)
+               :jenis "PIC"
+               :uuid uuid})
+  			  (io/create-path (str "resources/data/" uuid) true)
+    			(io/upload-file (str "resources/data/" uuid) (:ttpic params))
+    			(io/upload-file (str "resources/data/" uuid) (:capsekolah params))
+    			(io/upload-file (str "resources/data/" uuid) (:expensereport params))
+    			(io/upload-file (str "resources/data/" uuid) (:ctworksheet params))
+    			(io/upload-file (str "resources/data/" uuid) (:dailyactivity params))
+    			(io/upload-file (str "resources/data/" uuid) (:dataflyering params)))))
   (route/not-found "Not Found"))

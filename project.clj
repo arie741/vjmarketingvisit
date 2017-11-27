@@ -7,7 +7,8 @@
                  [ring/ring-defaults "0.2.1"]
                  [org.clojure/java.jdbc "0.7.3"]
                  [clj-postgresql "0.7.0"]
-                 [enlive "1.1.6"]]
+                 [enlive "1.1.6"]
+                 [lib-noir "0.9.9"]]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:handler vjmarketingvisit.handler/app}
   :profiles
