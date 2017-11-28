@@ -22,3 +22,4 @@
 ;;queries
 (defn searchs [sekolah]
 	(jdbc/query dbase [(str "select * from sekolah where nama = '" sekolah "'")]))
+

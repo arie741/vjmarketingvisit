@@ -8,6 +8,18 @@
             [clojure.java.io :as cio]
             [clojure.java.jdbc :as jdbc]))
 
+;;helper function
+(defn pic-upd [mp ky n jenis uuid]
+  (if (not (nil? ((keyword (str ky n)) mp)))
+    (do
+      (jdbc/insert! db/dbase :person 
+          {:nama ((keyword (str ky n)) mp)
+           :jabatan ((keyword (str "jabatan" ky n)) mp)
+           :telp ((keyword (str "telp" ky n)) mp)
+           :jenis jenis
+           :uuid uuid})
+      (pic-upd mp ky (+ n 1) jenis uuid))))
+
 ;snippet
 (defsnippet adddata "public/adddata.html"
 	[:div#adddata]
@@ -52,12 +64,9 @@
   	  		   	 :dailyactivity (:filename (:dailyactivity params))
   	  		   	 :dataflyer (:filename (:dataflyering params))
   	  		   	 :isvisited (:filename (:isvisited params))})
-          (jdbc/insert! db/dbase :person 
-              {:nama (:pic1 params)
-               :jabatan (:jabatanpic1 params)
-               :telp (:telppic1 params)
-               :jenis "PIC"
-               :uuid uuid})
+          (pic-upd params "pic" 1 "PIC" uuid)
+          (pic-upd params "cp" 1 "Contact Person" uuid)
+          (pic-upd params "mk" 1 "Mantan Ketua Osis" uuid)
   			  (io/create-path (str "resources/data/" uuid) true)
     			(io/upload-file (str "resources/data/" uuid) (:ttpic params))
     			(io/upload-file (str "resources/data/" uuid) (:capsekolah params))
